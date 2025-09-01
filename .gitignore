@@ -1,9 +1,12 @@
-# Compiled Java classes
+# Ignore compiled files
 *.class
 
-# IntelliJ IDEA
-.idea/
+# Ignore build output
 out/
+
+# Ignore IDE settings
+.idea/
+*.iml
 
 # System files
 .DS_Store
