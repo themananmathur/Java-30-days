@@ -1,0 +1,10 @@
+# Compiled Java classes
+*.class
+
+# IntelliJ IDEA
+.idea/
+out/
+
+# System files
+.DS_Store
+Thumbs.db
