@@ -8,6 +8,7 @@ public class Main {
                 new Square(4),
                 new Triangle(6, 7, 8),
                 //new Diamond(9, 10, 11),
+                new DiamondFix(9, 10, 11)
         };
 
         for (Shape s : shapes) {
