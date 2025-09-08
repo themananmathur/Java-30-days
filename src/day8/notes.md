@@ -5,16 +5,16 @@
 - Abstract classes define a contract (`Area()`, `Perimeter()`) that subclasses must implement.
 - Method overriding lets each shape provide its own logic for area/perimeter.
 - Constructors in parent classes must be called with `super(...)` if no default exists.
-- Polymorphism: a `Shape[]` can hold Circle, Rectangle, Square, Triangle, DiamondResolved — and the right method runs at runtime.
+- Polymorphism: a `Shape[]` can hold Circle, Rectangle, Square, Triangle, DiamondFix — and the right method runs at runtime.
 - Diamond problem: Java avoids multiple class inheritance to prevent ambiguity.
     - Tried extending both `Circle` and `Rectangle` → compile-time error.
-    - Resolved using **composition**: `DiamondResolved extends Shape` and holds `Circle` + `Rectangle` inside.
+    - Resolved using **composition**: `DiamondFix extends Shape` and holds `Circle` + `Rectangle` inside.
 
 ## Hands-on
 - Built an abstract `Shape` class with `Area()`, `Perimeter()`, and `describe()`.
 - Implemented `Circle`, `Rectangle`, `Square`, `Triangle` with proper overrides.
 - Added `Main` class to demo polymorphism by looping through different shapes.
-- Added `DiamondResolved` to simulate multiple inheritance using composition.
+- Added `DiamondFix` to simulate multiple inheritance using composition.
 - Verified everything by compiling and running from terminal.
 
 ## Challenges
