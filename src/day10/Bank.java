@@ -1,28 +1,23 @@
 package day10;
 
-public class Bank {
-    private Account[] accounts;
-    private int accountsCount;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-    public Bank(int capacity){
-        accounts = new Account[capacity];
-        accountsCount = 0;
+public class Bank {
+    private final Map<String, Account> accounts;
+
+    public Bank(){
+        accounts = new HashMap<>();
     }
 
     public void addAccount(Account a){
-        if(accountsCount >= accounts.length){
-            Account[] temp = new Account[accounts.length*2];
-            for(int i=0; i<accounts.length; i++) temp[i] = accounts[i];
-            accounts = temp;
-        }
-        accounts[accountsCount++] = a;
+        accounts.put(a.getId(), a);
     }
 
     public Account findById(String id) {
-        for (int i = 0; i < accountsCount; i++) {
-            if (id.equals(accounts[i].getId())) return accounts[i];
-        }
-        return null;
+        return accounts.get(id);
     }
 
     public boolean transfer(Account from, String toId, double amt) {

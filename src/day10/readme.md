@@ -11,8 +11,9 @@ Run:
 2. java ATMMain
 
 Sample accounts:
-- id: 1001, pin: 1234
-- id: 1002, pin: 1111
+- Manan (id: 1001, pin: 0000)
+- Randstad (id: 1002, pin: 1111)
+- Savings (id: 1003, pin: 2222)
 
 Features:
 - login, balance, deposit, withdraw, transfer, transaction history

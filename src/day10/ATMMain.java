@@ -5,11 +5,12 @@ import java.util.Scanner;
 public class ATMMain {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Bank bank = new Bank(4);
+        Bank bank = new Bank();
 
         // sample accounts
-        bank.addAccount(new Account("1001", "Manan", "1234", 50000.00));
+        bank.addAccount(new Account("1001", "Manan", "0000", 50000.00));
         bank.addAccount(new Account("1002", "Randstad", "1111", 700000.00));
+        bank.addAccount(new Account("1003", "Savings", "2222", 200000.00));
 
         System.out.println("ATM Simulator");
 
@@ -41,29 +42,40 @@ public class ATMMain {
                 switch (choice) {
                     case "1" -> System.out.printf("Balance: %.2f%n", acc.getBalance());
                     case "2" -> {
-                        System.out.print("Amount: ");
-                        double amt = sc.nextDouble();
-                        acc.deposit(amt);
-                        System.out.println("Deposited. New balance: " + String.format("%.2f", acc.getBalance()));
+                        try {
+                            System.out.print("Amount: ");
+                            double amt = sc.nextDouble();
+                            sc.nextLine();
+                            acc.deposit(amt);
+                            System.out.println("Deposited " + amt + "\nNew balance: " + String.format("%.2f", acc.getBalance()));
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Error: "  + e.getMessage());
+                        }
                     }
                     case "3" -> {
-                        System.out.print("Amount: ");
-                        double amt = sc.nextDouble();
-                        boolean ok = acc.withdraw(amt);
-                        System.out.println(ok ? "Withdrawn." : "Failed (insufficient/invalid).");
+                        try {
+                            System.out.print("Amount: ");
+                            double amt = sc.nextDouble();
+                            sc.nextLine();
+                            boolean ok = acc.withdraw(amt);
+                            System.out.println(ok ? "Withdrawn " + amt + "\nRemaining balance: " + String.format("%.2f", acc.getBalance()) : "Failed (insufficient/invalid).");
+                        } catch (IllegalArgumentException e) {
+                            System.out.println("Error: "  + e.getMessage());
+                        }
                     }
                     case "4" -> {
                         System.out.print("Target id: ");
                         String toId = sc.nextLine().trim();
                         System.out.print("Amount: ");
-                        double amt = sc.nextDouble();
+                        double amt = sc.nextDouble(); sc.nextLine();
                         boolean ok = bank.transfer(acc, toId, amt);
-                        System.out.println(ok ? "Transfer complete." : "Transfer failed.");
+                        System.out.println(ok ? "Transfer complete. \n" + amt + " sent to account " + toId + "\nRemaining balance: " + String.format("%.2f", acc.getBalance()) : "Transfer failed.");
                     }
                     case "5" -> {
                         System.out.println("History");
-                        String[] tx = acc.getTransactions();
-                        for (int i = 0; i < tx.length; i++) System.out.println((i + 1) + ") " + tx[i]);
+                        for(String t : acc.getTransactions()){
+                            System.out.println(t);
+                        }
                         System.out.println("----");
                     }
                     case "6" -> {

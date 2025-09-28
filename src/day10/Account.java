@@ -1,20 +1,21 @@
 package day10;
 
+import java.util.List;
+import java.util.ArrayList;
+
 public class Account {
     private final String id;
     private final String name;
-    private String pin;
+    private final String pin;
     private double balance;
-    private String[] transactions;
-    private int txnCount;
+    private final List<String> transactions;
 
     public Account(String id, String name,  String pin, double initialBalance) {
         this.id = id;
         this.name = name;
         this.pin = pin;
         this.balance = initialBalance;
-        this.transactions = new String[10];
-        this.txnCount = 0;
+        this.transactions = new ArrayList<>();
         addTransaction("Account created. Balance: " + balance);
     }
 
@@ -23,19 +24,17 @@ public class Account {
     public boolean checkPin(String p){ return this.pin.equals(p); }
     public double getBalance() { return balance; }
 
-    public void deposit(double amt){
+    public void deposit(double amt) throws IllegalArgumentException {
         if(amt<=0){
-            addTransaction("Invalid deposit: " + amt);
-            return;
+            throw new IllegalArgumentException("Invalid amount.");
         }
         balance += amt;
         addTransaction("Deposit: " + amt + " New balance: " + balance);
     }
 
-    public boolean withdraw(double amt){
+    public boolean withdraw(double amt) throws IllegalArgumentException {
         if(amt<=0){
-            addTransaction("Invalid withdraw: " + amt);
-            return false;
+            throw new IllegalArgumentException("Invalid amount.");
         }
         if(amt>balance){
             addTransaction("Transaction failed. Insufficient funds." + balance);
@@ -47,18 +46,11 @@ public class Account {
     }
 
     public void addTransaction(String entry) {
-        if (txnCount >= transactions.length) {
-            String[] temp = new String[transactions.length * 2];
-            for(int i=0; i<transactions.length; i++) temp[i] = transactions[i];
-            transactions = temp;
-        }
-        transactions[txnCount++] = entry;
+        transactions.add(entry);
     }
 
-    public String[] getTransactions() {
-        String[] out = new String[txnCount];
-        for(int i=0; i<txnCount; i++) out[i] = transactions[i];
-        return out;
+    public List<String> getTransactions() {
+        return  new ArrayList<>(transactions); // return a safe copy
     }
 
 }
