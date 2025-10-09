@@ -1,0 +1,10 @@
+day19\manualservice\StudentRepository.class
+day19\manualservice\Student.class
+day19\manualservice\StudentService.class
+day19\manualservice\StudentServiceMockDemo$FakeRepo.class
+com\day19\testing\Student.class
+day19\manualservice\StudentTest$TestMethod.class
+day19\manualservice\StudentServiceMockDemo.class
+day19\manualservice\StudentTest.class
+com\day19\testing\StudentService.class
+com\day19\testing\StudentRepository.class

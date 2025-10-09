@@ -1,4 +1,4 @@
-package day19;
+package day19.manualservice;
 
 import java.util.Optional;
 import java.util.List;
