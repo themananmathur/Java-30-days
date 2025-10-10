@@ -1,4 +1,4 @@
-package com.day19.testing;
+package com.day19.studentservice;
 
 
 import org.junit.jupiter.api.Test;

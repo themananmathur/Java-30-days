@@ -1,4 +1,4 @@
-package com.day19.testing;
+package com.day19.studentservice;
 
 
 public class Student {
@@ -13,3 +13,4 @@ public class Student {
     public int getId() { return id; }
     public String getName() { return name; }
 }
+
