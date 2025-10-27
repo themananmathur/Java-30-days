@@ -1,0 +1,17 @@
+# Java
+target/
+*.class
+
+# Maven
+/.mvn/
+**/pom.xml.tag
+**/pom.xml.releaseBackup
+**/pom.xml.versionsBackup
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# H2 (optional)
+*.db

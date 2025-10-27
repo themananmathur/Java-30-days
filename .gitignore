@@ -1,16 +1,25 @@
-# Ignore compiled files
-*.class
-
-# Ignore build output
-out/
-
-# Ignore IDE settings
+﻿# IDE folders (ignore .idea everywhere)
 .idea/
-*.iml
 
-# System files
+# Build output
+/target/
+**/target/
+out/
+out/**
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Logs
+*.log
+mvn-debug.log
+
+# Notes or personal files (optional)
+.notes/
+
+# OS
 .DS_Store
 Thumbs.db
-
-# Notes
-.notes/
