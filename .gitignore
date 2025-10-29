@@ -1,7 +1,7 @@
 ﻿# IDE folders
 .idea/
 
-#IntelliJ
+# exclude IntelliJ .iml file
 *.iml
 
 # Build output
