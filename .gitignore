@@ -1,5 +1,8 @@
-﻿# IDE folders (ignore .idea everywhere)
+﻿# IDE folders
 .idea/
+
+#IntelliJ
+*.iml
 
 # Build output
 /target/
