@@ -11,30 +11,32 @@ services:
       MYSQL_PASSWORD: day31pass
       MYSQL_ROOT_PASSWORD: rootpass
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       interval: 10s
       timeout: 5s
       retries: 5
-    volumes:
-      - db_data:/var/lib/mysql
 
   app:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: day31-app
     depends_on:
       db:
         condition: service_healthy
     ports:
-      - "8080:8080"
+      - "8090:8090"
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/day31?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: day31user
       SPRING_DATASOURCE_PASSWORD: day31pass
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
-
+      SPRING_JPA_DEFER_DATASOURCE_INITIALIZATION: "true"
 
 volumes:
   db_data:

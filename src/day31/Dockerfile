@@ -1,4 +1,18 @@
+# ---------- Build Stage ----------
+FROM maven:3.9.9-eclipse-temurin-17 AS builder
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn -B -DskipTests clean package
+
+# ---------- Run Stage ----------
 FROM eclipse-temurin:17-jre-alpine
-ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+WORKDIR /app
+
+COPY --from=builder /app/target/*.jar app.jar
+
+EXPOSE 8090
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
